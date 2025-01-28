@@ -3,4 +3,4 @@
 
 git@github.com:jkubareva/mesto-project-ff.git
 
-С сайтом можно ознакоиться по [ссылке]: (https://jkubareva.github.io/mesto-project-ff/ "Mesto")
+С сайтом можно ознакоиться по [ссылке] (https://jkubareva.github.io/mesto-project-ff/ "Mesto")
