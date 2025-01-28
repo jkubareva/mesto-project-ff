@@ -17,15 +17,11 @@ function showInputError(formElement, inputElement, errorMessage, classValidation
   errorElement.textContent = errorMessage;
 };
 
-
 // Функция для удаления класса error
 function hideInputError(formElement, inputElement, classValidation) {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  //const errorElement = formElement.querySelector(`.popup__input-error`); 
-  console.log(inputElement);
   inputElement.classList.remove(classValidation.inputErrorClass);
   errorElement.classList.remove(classValidation.errorClass);
-  console.log(errorElement);
   errorElement.textContent = '';
   };
 
@@ -84,14 +80,10 @@ export function enableValidation(classValidation) {
 
 //Функция очистки ошибок валидации форм
 export function clearValidation(formElement, classValidation) {
-  const inputList = Array.from(document.querySelectorAll(classValidation.inputSelector));
+  const inputList = Array.from(formElement.querySelectorAll(classValidation.inputSelector));
   const buttonElement = formElement.querySelector(classValidation.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, classValidation);
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, classValidation)
   });  
 };
-
-
-/*Если произвожу обращение через (`.${inputElement.id}-error`), 
-  то возникает ошибка  TypeError: Cannot read properties of null (reading 'classList') at hideInputError*/
