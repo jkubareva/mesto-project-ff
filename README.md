@@ -1,6 +1,6 @@
 # Проектная работа Mesto
+Проект «Mesto» - сайт, разработанный в рамках учебной программы в Яндекс Практикуме. Сайт представляет из себя небольшую социальную сеть, где есть возможности публиковать фотоконтент, оценивать и удалять его при необходимости. 
 
 git@github.com:jkubareva/mesto-project-ff.git
 
-You can see the site at the link:
-https://jkubareva.github.io/mesto-project-ff/
+С сайтом можно ознакоиться по ссылке: [https://jkubareva.github.io/mesto-project-ff/]
