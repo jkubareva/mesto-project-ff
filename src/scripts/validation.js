@@ -80,7 +80,7 @@ export function enableValidation(classValidation) {
 
 //Функция очистки ошибок валидации форм
 export function clearValidation(formElement, classValidation) {
-  console.log
+  
   const inputList = Array.from(formElement.querySelectorAll(classValidation.inputSelector));
   const buttonElement = formElement.querySelector(classValidation.submitButtonSelector);
   
