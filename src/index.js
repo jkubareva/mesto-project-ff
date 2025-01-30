@@ -1,15 +1,9 @@
 import './pages/index.css';
-// import { initialCards } from './scripts/cards.js';
 import { createCard, deleteCard, likeCard } from './scripts/card.js';
 import { openModal, closeModal } from './scripts/modal.js';
 import { enableValidation, clearValidation } from './scripts/validation.js';
 import { handleResponse, getUserData, updateDataProfile, updateAvatarProfile, 
   getCardsFromServer, createNewCard } from './scripts/api.js';
-
-  /* Вывести карточки на страницу
-initialCards.forEach(function (dataCard) {
-  plasesList.append(createCard(dataCard, deleteCard, likeCard, openImage));
-}); */
 
 // Глобальные переменные
 const plasesList = document.querySelector('.places__list');
@@ -38,24 +32,23 @@ const placeLinkCardInput = newCardItem.querySelector('input[name="link"]');
 
 // Открытие формы "Добавить карточку"
 profileAddButton.addEventListener('click', function() {
-  clearValidation(popupNewCard, classValidation); 
   openModal(popupNewCard);
 });
 
 // Обработчик «отправки» формы "Добавать карточку"
 function handleCardSubmit(evt) {
   evt.preventDefault();
-
   const popupButtonSafe = popupEditProfile.querySelector('.popup__button');
   popupButtonSafe.textContent = 'Сохранение...';
 
   createNewCard(placeNameCardInput.value, placeLinkCardInput.value)
     .then((dataCardNew) => {
       const serverNewCardData = createCard(dataCardNew, userId, deleteCard, likeCard,  openImage)
-    
       plasesList.prepend(serverNewCardData);
-      newCardItem.reset();
+      
       closeModal(popupNewCard);
+      newCardItem.reset();
+      clearValidation(newCardItem, classValidation);
     })
     .catch((error) => {
       console.error(`Ошибка при добавлении карточки: ${error}`);
@@ -82,8 +75,6 @@ function openImage(dataCard) {
   openModal(popupImage); 
 };
 
-closeModal(popupImage);
-
 // Переменные "Редактировать профиль"
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupEditProfile = document.querySelector('.popup_type_edit');
@@ -95,10 +86,9 @@ const jobProfileInput = profileFormElement.querySelector('.popup__input_type_des
 
 // Открытие формы "Редактировать профиль"
 profileEditButton.addEventListener('click', function() {
-  clearValidation(profileFormElement, classValidation);
   nameProfileInput.value = profileTitle.textContent;
   jobProfileInput.value = profileDescription.textContent;
-
+  
   openModal(popupEditProfile);
 });
 
@@ -116,7 +106,9 @@ function handleProfileSubmit(evt) {
     .then((res) => {
       profileTitle.textContent = res.name;
       profileDescription.textContent = res.about;
+      
       closeModal(popupEditProfile);
+      clearValidation(profileFormElement, classValidation);
     })
     .catch((error) => {
       console.error(`Ошибка при обновлении профиля: ${error}`);
@@ -137,8 +129,8 @@ const popupAvatarInput = popupAvatarForm.querySelector('.popup__input_type_avata
 
 // Открытие формы "Обновить аватар"
 profileAvatar.addEventListener('click', function() {
-  clearValidation(popupAvatarForm, classValidation); 
-  popupAvatarForm.reset();
+  clearValidation(popupAvatarForm, classValidation);  
+  popupAvatarForm.reset(); 
   openModal(popupAvatar);
 });
 
@@ -152,7 +144,10 @@ function handleAvatarSubmit(evt) {
   updateAvatarProfile(popupAvatarInput.value)
     .then((res) => {
       profileAvatar.style.backgroundImage = `url(${res.avatar})`;
+
       closeModal(popupAvatar);
+      popupAvatarForm.reset();
+      clearValidation(popupAvatarForm, classValidation); 
     })
     .catch((error) => {
       console.error(`Ошибка при обновлении аватара: ${error}`);
@@ -177,8 +172,3 @@ const classValidation = {
 };
 
 enableValidation(classValidation);
-
-
-
-
- 

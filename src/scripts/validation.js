@@ -36,7 +36,7 @@ function checkInputValidity(formElement, inputElement, classValidation) {
     showInputError(formElement, inputElement, inputElement.validationMessage, classValidation);
   } else {
     hideInputError(formElement, inputElement, classValidation);
-  }
+  };
 }; 
 
 //Функция навешивания слушателей на формы
@@ -60,14 +60,14 @@ function toggleButtonState(inputList, buttonElement, classValidation) {
   } else {
     buttonElement.disabled = false;
     buttonElement.classList.remove(classValidation.inactiveButtonClass);
-  }
+  };
 };
 
 //Функция проверки невалидныx форм
 function hasInvalidInput(inputList) {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
-  })
+  });
 };
 
 //Функция включения валидации всех форм
@@ -80,10 +80,14 @@ export function enableValidation(classValidation) {
 
 //Функция очистки ошибок валидации форм
 export function clearValidation(formElement, classValidation) {
+  console.log
   const inputList = Array.from(formElement.querySelectorAll(classValidation.inputSelector));
   const buttonElement = formElement.querySelector(classValidation.submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, classValidation);
+  
   inputList.forEach((inputElement) => {
     hideInputError(formElement, inputElement, classValidation)
   });  
+  toggleButtonState(inputList, buttonElement, classValidation);
 };
+
+ 
